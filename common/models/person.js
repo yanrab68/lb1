@@ -2,8 +2,7 @@
 
 module.exports = function(Person) {
 
-  Person.senior = function(cb) {
-    var ln = 'Vancouver';
+  Person.senior = function(ln, cb) {
     Person.findOne({where: {lastname: ln}}, function(err, inst){
        
        if(err){
@@ -23,10 +22,10 @@ module.exports = function(Person) {
   Person.remoteMethod(
     'senior', {
       http: {
-        path: '/senior/',
+        path: '/senior',
         verb: 'get'
       },
-      //accepts: {arg: 'lastname', type: 'string'},
+      accepts: {arg: 'lastname', type: 'string'},
       returns: {arg: 'senior', type: 'string'}
     }
   );
