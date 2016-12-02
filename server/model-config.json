@@ -36,7 +36,7 @@
     "dataSource": null
   },
   "person": {
-    "dataSource": "db",
+    "dataSource": "myPostgress",
     "public": true
   }
 }

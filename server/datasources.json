@@ -2,5 +2,15 @@
   "db": {
     "name": "db",
     "connector": "memory"
+  },
+  "myPostgress": {
+    "host": "localhost",
+    "port": 5432,
+    "url": "",
+    "database": "postgres",
+    "password": "canada07",
+    "name": "myPostgress",
+    "user": "postgres",
+    "connector": "postgresql"
   }
 }
