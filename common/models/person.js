@@ -3,24 +3,31 @@
 module.exports = function(Person) {
 
   Person.senior = function(cb) {
-    var response;
-    if (Person.age > 50) {
-      response = 'I am a senior';
-    } else {
-      response = 'I am a kid';
-    }
-    cb(null, response);
+    var ln = 'Vancouver';
+    Person.findOne({where: {lastname: ln}}, function(err, inst){
+       
+       if(err){
+            cb(null, "Error in findOne");
+       } else {
+            
+            if(!inst)
+                cb(null, 'Not found');
+            if(inst.age > 50 )
+                cb(null, 'I am a senior');
+            else 
+                cb(null, 'I am a kid');
+       }
+    }); 
+    
   };
   Person.remoteMethod(
     'senior', {
       http: {
-        path: '/senior',
+        path: '/senior/',
         verb: 'get'
       },
-      returns: {
-        arg: 'senior',
-        type: 'string'
-      }
+      //accepts: {arg: 'lastname', type: 'string'},
+      returns: {arg: 'senior', type: 'string'}
     }
   );
 
